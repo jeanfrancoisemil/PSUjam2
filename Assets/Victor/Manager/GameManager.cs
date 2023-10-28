@@ -44,19 +44,16 @@ public class GameManager : MonoBehaviour
             currentEnemySpawnedCount++;
         }
     }
-    [HideInInspector]public bool newWave;
     [HideInInspector]public bool endWave;
+    [HideInInspector]public bool endWave2;
     // Update is called once per frame
     void Update()
     {
         if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines && !endWave)
         {
             endWave = true;
+            endWave2 = true;
             StartCoroutine(StartMenuCoroutine());
-        }
-        else
-        {
-            newWave = false;
         }
     }
     private bool _coroutines;
@@ -65,7 +62,7 @@ public class GameManager : MonoBehaviour
         _coroutines = true;
         yield return new WaitForSeconds(3f);
         SpawnMenu();
-
+        endWave2 = false;
         _coroutines = false;
     }
     private float _savedTimeScale;
@@ -103,23 +100,20 @@ public class GameManager : MonoBehaviour
             NextWave();
             
             Time.timeScale = _savedTimeScale;
-            newWave = true;
-            endWave = false;            
         }
         StartCoroutine(nameof(ResetEndWave));
     }
 
     IEnumerator ResetEndWave()
     {
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(15f);
         endWave = false;
     }
     IEnumerator DisplayMap()
     {
+        Time.timeScale = _savedTimeScale;
         yield return new WaitForSeconds(10f);
         NextWave();
-        Time.timeScale = _savedTimeScale;
-        newWave = true;
         endWave = false;
     }
     private void NextWave()
