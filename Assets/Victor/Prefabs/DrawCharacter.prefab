@@ -9954,7 +9954,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.49092388, y: -1.4884113, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 808493103599671979}
   - {fileID: 773876014021931996}
@@ -10040,8 +10040,6 @@ MonoBehaviour:
   - {fileID: -8659414478651179443, guid: 91cd80b93d9b8974a92a1270c47bfc11, type: 3}
   attackCheck: {fileID: 3961475747065601572}
   canAttack: 1
-  canSwitch: 0
-  cam: {fileID: 0}
 --- !u!114 &3119461545812118771
 MonoBehaviour:
   m_ObjectHideFlags: 0

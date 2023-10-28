@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         _savedTimeScale = Time.timeScale;
         WeaponChoice.Instance.transform.root.gameObject.SetActive(true);
+        WeaponChoice.Instance.gameObject.SetActive(true);
         WeaponChoice.Instance.SetPause();
         var weapons = Attack.Instance.FetchWeapons();
         WeaponChoice.Instance.SetSprites(weapons[0],weapons[1]);
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetWeapon(int index)
     {
-        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
+        WeaponChoice.Instance.gameObject.SetActive(false);
         if (index == 2)
         {
             StartCoroutine(nameof(DisplayMap));
@@ -96,14 +97,34 @@ public class GameManager : MonoBehaviour
             {
                 Attack.Instance.SwitchWeapon(SpriteTwo.Index);
             }
-
             NextWave();
             
+            //StartCoroutine(nameof(Aiguille));
+            //AiguilleController.Instance.gameObject.SetActive(true);
             Time.timeScale = _savedTimeScale;
+            
         }
         StartCoroutine(nameof(ResetEndWave));
     }
 
+    IEnumerator Aiguille()
+    {
+        switch (patternOfWave.Enemy.kind)
+        {
+            case EnemyMovement.EnemyKind.Famine:
+                AiguilleController.Instance.LaunchWheel("Famine");
+                break;
+            case EnemyMovement.EnemyKind.Guerre:
+                AiguilleController.Instance.LaunchWheel("Guerre");
+                break;
+            case EnemyMovement.EnemyKind.Conquete:
+                AiguilleController.Instance.LaunchWheel("Conquete");
+                break;
+        }
+        yield return new WaitForSeconds(AiguilleController.Instance.time + 2f);
+        AiguilleController.Instance.gameObject.SetActive(false);
+    }
+    
     IEnumerator ResetEndWave()
     {
         yield return new WaitForSeconds(15f);

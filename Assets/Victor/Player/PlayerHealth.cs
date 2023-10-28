@@ -13,14 +13,16 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer _renderer;
     private bool _canTakeDamage;
     private bool _dead;
-
-    private CharacterController2D _CharacterController; 
+    private Animator _animator;
+    private CharacterController2D _CharacterController;
+    private static readonly int Die1 = Animator.StringToHash("Die");
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _canTakeDamage = true;
         _CharacterController = GetComponent<CharacterController2D>();
         currentHealth = initialHealth;
+        _animator = GetComponent<Animator>();
     }
     public void DoDamage(int damage)
     {
@@ -65,5 +67,6 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines();
         _renderer.color = Color.black;
         _dead = true;
+        _animator.SetBool(Die1, true);
     }
 }

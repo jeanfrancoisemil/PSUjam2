@@ -26,7 +26,7 @@ public class WeaponChoice : MonoBehaviour, Player.IWavePauseActions
             _player.Enable();
         }
         _player.WavePause.SetCallbacks(this);
-
+        _player.WavePause.Disable();
         if (Instance == null)
         {
             Instance = this;

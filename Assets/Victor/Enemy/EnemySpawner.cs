@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.endWave)
+        if (GameManager.Instance.endWave2)
         {
             doorAnimator.SetBool(DoorOpen, false);
         }

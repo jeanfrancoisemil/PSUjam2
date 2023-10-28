@@ -7,11 +7,18 @@ using Random = System.Random;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
+    public enum EnemyKind
+    {
+        Conquete,
+        Guerre,
+        Famine
+    }
     public enum EnemyType
     {
         ShootingVertical,
         ShootingHorizontal
     }
+    public EnemyKind kind;
     public EnemyType enemyType;
     private Rigidbody2D _follow;
     private PlayerHealth _followHealth;
