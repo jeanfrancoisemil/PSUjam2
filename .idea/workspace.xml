@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c6bb27b5-cd93-40a0-887e-79cc10024228" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/Walk.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/Walk.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/secours_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/secours_1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/secours_1_0.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Animation/secours_1_0.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyMovement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyTeleport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyTeleport.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyTeleportPlatform.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyTeleportPlatform.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/PlayerSingleton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/PlayerSingleton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Enemy 01.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Enemy 01.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Platform 01.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Platform 01.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Platform 02.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Victor/Prefabs/Platform 02.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetroidvaniaController/Prefabs/DrawCharacter.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetroidvaniaController/Prefabs/DrawCharacter.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Remi/Scripts/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Remi/Scripts/Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VictorTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VictorTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Victor/Enemy/Test.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Victor/Enemy/Test.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Victor/Enemy/EnemyMovement.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="jcmfklwk" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2XMxnp84KwaxUguzIH6mrgIAUDC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6bb27b5-cd93-40a0-887e-79cc10024228" name="Changes" comment="" />
+      <created>1698452921893</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698452921893</updated>
+      <workItem from="1698452923463" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

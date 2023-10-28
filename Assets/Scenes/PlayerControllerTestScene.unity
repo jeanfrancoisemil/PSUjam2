@@ -657,11 +657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.7
+      value: 2.765
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.37
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1205,9 +1205,9 @@ MonoBehaviour:
   canAttack: 1
   isTimeToCheck: 0
   currentWeapon: {fileID: 75854988}
-  HorizontalWeapon: {fileID: 0}
-  VerticalWeapon: {fileID: 0}
-  ZoneWeapon: {fileID: 0}
+  HorizontalWeapon: {fileID: 75854988}
+  VerticalWeapon: {fileID: 667363440}
+  ZoneWeapon: {fileID: 1253125706}
   cam: {fileID: 1219309650}
 --- !u!95 &1609058356 stripped
 Animator:

@@ -45,6 +45,8 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	    player.ArmeZone.SetCallbacks(this);
 	    player.SwitchArme.SetCallbacks(this);
 	    player.SwitchArme.Enable();
+	    
+	    
     }
 
     // Update is called once per frame
@@ -78,8 +80,8 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 			    Vector2 direction = new Vector2(0, armeVerticalDirr);
 			    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
 			    throwableWeapon.name = "ThrowableWeapon";
-			    
-			    AttackCooldown();
+
+			    StartCoroutine(AttackCooldown());
 
 		    }
 	    }
@@ -95,7 +97,7 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
 		    throwableWeapon.name = "ThrowableWeapon";
 		    
-		    AttackCooldown();
+		    StartCoroutine(AttackCooldown());
 				
 	    }
 			
@@ -108,13 +110,14 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
 		    throwableWeapon.name = "ThrowableWeapon";
 		    
-		    AttackCooldown();
+		    StartCoroutine(AttackCooldown());
 	    }
 	}
 
-	void AttackCooldown()
+	IEnumerator AttackCooldown()
 	{
-		var waitForSeconds = new WaitForSeconds(0.25f);
+		canAttack = false;
+		yield return new WaitForSeconds(0.25f);
 		canAttack = true;
 	}
 
