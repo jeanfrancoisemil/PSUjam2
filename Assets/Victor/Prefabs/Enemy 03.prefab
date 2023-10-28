@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  teleportationThreshold: 0.1
+  teleportationThreshold: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  speed: 3
+  speed: 6
   force: 0.4
   pushForce: 10
 --- !u!58 &6395071873139370855
@@ -182,5 +182,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b365177cdba41a441b8a46d50c1c7101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 25
+  initialHealth: 15
   currentHealth: 0

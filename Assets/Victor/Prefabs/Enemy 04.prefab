@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  teleportationThreshold: 0.1
+  teleportationThreshold: 0.8
   groundMask:
     serializedVersion: 2
     m_Bits: 64
