@@ -9894,8 +9894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783f8b7882d2d2a42a5b76de9179978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 850
-  m_MovementSmoothing: 0.05
+  m_JumpForce: 1100
+  m_MovementSmoothing: 0.04
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
@@ -9973,7 +9973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1664945366924710543}
   animator: {fileID: 6261835338150618347}
-  runSpeed: 40
+  runSpeed: 60
 --- !u!212 &154770276788131309
 SpriteRenderer:
   m_ObjectHideFlags: 0

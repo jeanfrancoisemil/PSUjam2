@@ -53,6 +53,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0fc909a-9e1b-44b6-86d8-c7e5aca2cdc0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47bc3e12-4a8b-4afe-9d28-bac11d0e3878"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -349,6 +369,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_main_Move = m_main.FindAction("Move", throwIfNotFound: true);
         m_main_Jump = m_main.FindAction("Jump", throwIfNotFound: true);
         m_main_Down = m_main.FindAction("Down", throwIfNotFound: true);
+        m_main_Dash = m_main.FindAction("Dash", throwIfNotFound: true);
         // ArmeVerticale
         m_ArmeVerticale = asset.FindActionMap("ArmeVerticale", throwIfNotFound: true);
         m_ArmeVerticale_ShootUp = m_ArmeVerticale.FindAction("ShootUp", throwIfNotFound: true);
@@ -428,6 +449,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_main_Move;
     private readonly InputAction m_main_Jump;
     private readonly InputAction m_main_Down;
+    private readonly InputAction m_main_Dash;
     public struct MainActions
     {
         private @Player m_Wrapper;
@@ -435,6 +457,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_main_Move;
         public InputAction @Jump => m_Wrapper.m_main_Jump;
         public InputAction @Down => m_Wrapper.m_main_Down;
+        public InputAction @Dash => m_Wrapper.m_main_Dash;
         public InputActionMap Get() { return m_Wrapper.m_main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -453,6 +476,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Down.started += instance.OnDown;
             @Down.performed += instance.OnDown;
             @Down.canceled += instance.OnDown;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -466,6 +492,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Down.started -= instance.OnDown;
             @Down.performed -= instance.OnDown;
             @Down.canceled -= instance.OnDown;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -718,6 +747,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IArmeVerticaleActions
     {
