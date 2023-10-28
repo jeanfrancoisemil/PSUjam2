@@ -339,19 +339,19 @@ public partial class @Player: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Scroll"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""02213e52-0b2d-41fb-8958-299a45db14f0"",
-                    ""expectedControlType"": ""Delta"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""fa3ce9b0-b36b-450e-86e5-336c924606ed"",
-                    ""path"": ""<Mouse>/scroll"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
             currentEnemySpawnedCount++;
         }
     }
-    public bool newWave;
-    public bool endWave;
+    [HideInInspector]public bool newWave;
+    [HideInInspector]public bool endWave;
     // Update is called once per frame
     void Update()
     {
