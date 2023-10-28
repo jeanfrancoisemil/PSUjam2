@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeHorizontaleActions, Player.IArmeZoneActions, Player.ISwitchArmeActions
@@ -23,7 +24,8 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	private Player player;
 	
 	public GameObject cam;
-	
+
+	public UnityEvent attackEvent;
 
 	// Start is called before the first frame update
 	void Start()
@@ -79,6 +81,7 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 
 	IEnumerator AttackCooldown()
 	{
+		attackEvent.Invoke();
 		canAttack = false;
 		yield return _waitForSecondsAttack;
 		canAttack = true;
