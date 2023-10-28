@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     public List<EnemyMovement> enemiesPrefabs;
     [HideInInspector]public int currentEnemySpawnedCount;
     private bool _deathPresence;
+
+    public UnityEvent waveEvent;
+    
     void Start()
     {
         if (Instance == null)
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour
     }
     private void NextWave()
     {
+        waveEvent.Invoke();
         if (_deathPresence && Random.Range(0, 10) == 5)
         {
             StartCoroutine(nameof(SpawnDeath));
