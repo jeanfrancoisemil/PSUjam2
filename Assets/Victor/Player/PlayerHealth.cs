@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,16 +14,14 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer _renderer;
     private bool _canTakeDamage;
     private bool _dead;
-    private Animator _animator;
-    private CharacterController2D _CharacterController;
-    private static readonly int Die1 = Animator.StringToHash("Die");
+
+    private CharacterController2D _CharacterController; 
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _canTakeDamage = true;
         _CharacterController = GetComponent<CharacterController2D>();
         currentHealth = initialHealth;
-        _animator = GetComponent<Animator>();
     }
     public void DoDamage(int damage)
     {
@@ -67,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines();
         _renderer.color = Color.black;
         _dead = true;
-        _animator.SetBool(Die1, true);
+        DontDestroyOnLoad(this.GetComponent<AudioSource>());
+        SceneManager.LoadScene("GameOver");
     }
 }
