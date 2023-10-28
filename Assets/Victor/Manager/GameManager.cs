@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount== patternOfWave.EnemyCount)
+        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines)
         {
             endWave = true;
             StartCoroutine(StartMenuCoroutine());
@@ -58,20 +58,22 @@ public class GameManager : MonoBehaviour
             newWave = false;
         }
     }
-
+    private bool _coroutines;
     IEnumerator StartMenuCoroutine()
     {
+        _coroutines = true;
         yield return new WaitForSeconds(3f);
         SpawnMenu();
         NextWave();
         newWave = true;
         endWave = false;
+        _coroutines = false;
     }
     private float _savedTimeScale;
     private void SpawnMenu()
     {
         _savedTimeScale = Time.timeScale;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     private void NextWave()
     {

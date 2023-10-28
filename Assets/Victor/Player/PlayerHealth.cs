@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _renderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        _renderer.color = _initialColor;
+        _renderer.color = Color.white;
     }    
     IEnumerator ChangeCanTakeDamage()
     {
@@ -61,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
     {
         dieEvent.Invoke();
         StopAllCoroutines();
+        _renderer.color = Color.white;
         _dead = true;
     }
 }

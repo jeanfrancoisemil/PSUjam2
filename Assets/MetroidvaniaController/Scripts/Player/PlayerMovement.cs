@@ -52,28 +52,7 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 			if(jump == false) GoDown();
 		}
 
-<<<<<<< Updated upstream
-		if (Input.GetKeyDown(KeyCode.C))
-		{
-			dash = true;
-		}
-		
-=======
 
-		/*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
-		{
-			if (dashAxis == false)
-			{
-				dashAxis = true;
-				dash = true;
-			}
-		}
-		else
-		{
-			dashAxis = false;
-		}
-		*/
->>>>>>> Stashed changes
 
 	}
 
@@ -120,17 +99,7 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 	}	
 	
 
-
-
-<<<<<<< Updated upstream
-=======
-	public void OnShootDir(InputAction.CallbackContext context)
-	{
-		throw new NotImplementedException();
-	}
-
 	public void OnDash (InputAction.CallbackContext context){
 		dash=context.performed;
 	}
->>>>>>> Stashed changes
 }
