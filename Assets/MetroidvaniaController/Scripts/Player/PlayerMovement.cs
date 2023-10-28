@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 
 	public CharacterController2D controller;
 	public Animator animator;
 
+	private Player player;
+
+	private float moveActions;
+	private bool jumpInput;
+	private bool downInput;
+	
 	public float runSpeed = 40f;
 
 	float horizontalMove = 0f;
@@ -14,17 +22,34 @@ public class PlayerMovement : MonoBehaviour {
 	bool dash = false;
 
 	//bool dashAxis = false;
-	
+
+	private void Start()
+	{
+		if (player == null)
+		{
+			player = new Player();
+			player.main.SetCallbacks(this);
+		}
+
+		player.main.Enable();
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		horizontalMove = moveActions * runSpeed;
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetKeyDown(KeyCode.Z))
+		if (jumpInput)
 		{
 			jump = true;
+		}
+
+		if (downInput)
+		{
+			if(jump == false) GoDown();
 		}
 
 		if (Input.GetKeyDown(KeyCode.C))
@@ -58,11 +83,52 @@ public class PlayerMovement : MonoBehaviour {
 		animator.SetBool("IsJumping", false);
 	}
 
+	public void GoDown()
+	{
+		this.transform.position.Set(this.transform.position.x, this.transform.position.y-10, this.transform.position.z);
+	}
+
 	void FixedUpdate ()
 	{
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash);
 		jump = false;
 		dash = false;
+	}
+	
+
+	public void OnShootRight(InputAction.CallbackContext context)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void OnShootUp(InputAction.CallbackContext context)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void OnNewaction(InputAction.CallbackContext context)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void OnMove(InputAction.CallbackContext context)
+	{
+		moveActions = context.ReadValue<float>();
+	}
+
+	public void OnJump(InputAction.CallbackContext context)
+	{
+		jumpInput = context.performed;
+	}
+
+	public void OnDown(InputAction.CallbackContext context)
+	{
+		downInput = context.performed;
+	}
+
+	public void OnShootDir(InputAction.CallbackContext context)
+	{
+		throw new NotImplementedException();
 	}
 }
