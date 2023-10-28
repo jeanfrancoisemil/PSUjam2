@@ -10,8 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public enum EnemyType
     {
         ShootingVertical,
-        ShootingHorizontal,
-        Death
+        ShootingHorizontal
     }
     public EnemyType enemyType;
     private Rigidbody2D _follow;

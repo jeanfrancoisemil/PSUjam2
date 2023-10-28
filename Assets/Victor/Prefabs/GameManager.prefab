@@ -46,9 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfWavePredicted: 6
   waveNumber: 0
+  deathPrefab: {fileID: 2083332148452116689, guid: aeab45a023c9a234c9ea6810fb8383df, type: 3}
+  DeathSpawner: {fileID: 0}
   enemiesPrefabs:
   - {fileID: 2083332148452116689, guid: 2b3f821f41ed55c41aaf18d6f06a665d, type: 3}
-  - {fileID: 2083332148452116689, guid: aeab45a023c9a234c9ea6810fb8383df, type: 3}
   - {fileID: 2083332148452116689, guid: 092c10a796aa8134e8f20dcf24975488, type: 3}
   - {fileID: 2083332148452116689, guid: 21a1d6767beebe549856b57b802033ef, type: 3}
   - {fileID: 2083332148452116689, guid: 7639acc9fdf10f945883213a7ac55d16, type: 3}

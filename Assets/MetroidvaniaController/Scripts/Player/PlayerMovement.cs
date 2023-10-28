@@ -99,20 +99,7 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 	}
 	
 
-	public void OnShootRight(InputAction.CallbackContext context)
-	{
-		throw new NotImplementedException();
-	}
 
-	public void OnShootUp(InputAction.CallbackContext context)
-	{
-		throw new NotImplementedException();
-	}
-
-	public void OnNewaction(InputAction.CallbackContext context)
-	{
-		throw new NotImplementedException();
-	}
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
@@ -127,10 +114,9 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 	public void OnDown(InputAction.CallbackContext context)
 	{
 		downInput = context.performed;
-	}
+	}	
+	
 
-	public void OnShootDir(InputAction.CallbackContext context)
-	{
-		throw new NotImplementedException();
-	}
+
+
 }

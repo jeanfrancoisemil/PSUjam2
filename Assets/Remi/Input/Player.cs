@@ -312,6 +312,34 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""6fcaad33-f079-4ad5-a770-4b3d7c5f11bf"",
+            ""actions"": [
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""02213e52-0b2d-41fb-8958-299a45db14f0"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa3ce9b0-b36b-450e-86e5-336c924606ed"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -333,6 +361,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
         // SwitchArme
         m_SwitchArme = asset.FindActionMap("SwitchArme", throwIfNotFound: true);
         m_SwitchArme_Switch = m_SwitchArme.FindAction("Switch", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_Scroll = m_Camera.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -636,6 +667,52 @@ public partial class @Player: IInputActionCollection2, IDisposable
         }
     }
     public SwitchArmeActions @SwitchArme => new SwitchArmeActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
+    private readonly InputAction m_Camera_Scroll;
+    public struct CameraActions
+    {
+        private @Player m_Wrapper;
+        public CameraActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Scroll => m_Wrapper.m_Camera_Scroll;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+        }
+
+        private void UnregisterCallbacks(ICameraActions instance)
+        {
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+        }
+
+        public void RemoveCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     public interface IMainActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -657,5 +734,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
     public interface ISwitchArmeActions
     {
         void OnSwitch(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

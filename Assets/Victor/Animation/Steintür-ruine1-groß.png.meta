@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b39cc13b898ebf14895dc76340c20224
+guid: a85d48fc7f6cc004bac31566cf9b7e79
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,274 +123,337 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pentagramm_0
+      name: "Steint\xFCr-ruine1-gro\xDF_0"
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 110
-        height: 120
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac7517257d2fa344683bab714470ad70
-      internalID: -173871249
+      spriteID: 187f6e10fde112d42aecaab6c9703033
+      internalID: 1771793396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_1
+      name: "Steint\xFCr-ruine1-gro\xDF_1"
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed89104cd8254f43ad359570dfbceb7
+      internalID: -1897705630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Steint\xFCr-ruine1-gro\xDF_2"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe818d9753267a9458bfc6a3842d685e
+      internalID: -1281733993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Steint\xFCr-ruine1-gro\xDF_3"
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7a739a1e5938f4ca717ed31a4c560e
+      internalID: 1862663497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Steint\xFCr-ruine1-gro\xDF_4"
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
-        width: 110
-        height: 120
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024e8d97919024e45a44abbc385879ad
-      internalID: 878251203
+      spriteID: c43ca2b8c7910864c9ad7c505d36eb71
+      internalID: -536835751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_2
+      name: "Steint\xFCr-ruine1-gro\xDF_5"
       rect:
         serializedVersion: 2
-        x: 110
-        y: 240
-        width: 110
-        height: 120
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c6a2cab0d8ace44299e59a90c5fe3b2
-      internalID: 1520402135
+      spriteID: 0c8aa1aff8c5fb14f955156b20cd8018
+      internalID: -850242194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_3
+      name: "Steint\xFCr-ruine1-gro\xDF_6"
       rect:
         serializedVersion: 2
-        x: 220
-        y: 240
-        width: 110
-        height: 120
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0dd1a22a3ec5ce43938e278901bec19
-      internalID: -1637180233
+      spriteID: 162feaa62e18d084397c526d58962782
+      internalID: -698921835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_4
+      name: "Steint\xFCr-ruine1-gro\xDF_7"
       rect:
         serializedVersion: 2
-        x: 330
-        y: 240
-        width: 110
-        height: 120
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee5b30752d5f78d4090e3bba26eb6ccf
-      internalID: -1993968778
+      spriteID: fc6034949ac67cb40b417c4706e0f5fc
+      internalID: -1132502134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_5
+      name: "Steint\xFCr-ruine1-gro\xDF_8"
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 110
-        height: 120
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a1f9c5ffa287ef459e2357101ef0108
-      internalID: -1404017658
+      spriteID: 6c38310f727d35945937d443d3bcce5a
+      internalID: -2100849603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_6
+      name: "Steint\xFCr-ruine1-gro\xDF_9"
       rect:
         serializedVersion: 2
-        x: 110
-        y: 120
-        width: 110
-        height: 120
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1412c096d679604d8206c5fc5a00148
-      internalID: -1308521024
+      spriteID: 8ce59c8b8e8f455428a3a8063df9ff8e
+      internalID: -637813111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_7
+      name: "Steint\xFCr-ruine1-gro\xDF_10"
       rect:
         serializedVersion: 2
-        x: 220
-        y: 120
-        width: 110
-        height: 120
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84b11e0de400d0442bb8b8ecfe53af5c
-      internalID: -2086306429
+      spriteID: 26290f89512ab8c44ba6e3ff7231b5c7
+      internalID: 1026804108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_8
+      name: "Steint\xFCr-ruine1-gro\xDF_11"
       rect:
         serializedVersion: 2
-        x: 330
-        y: 120
-        width: 110
-        height: 120
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7930c3ac427b7948817862a62789478
-      internalID: 50157785
+      spriteID: f6f2a1f901c28354eb6581d24aed7d2f
+      internalID: 960993457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_9
+      name: "Steint\xFCr-ruine1-gro\xDF_12"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 110
-        height: 120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06708c010fedfb94da949f21e023a653
-      internalID: -458563625
+      spriteID: 6d0d5ce7ce85dd74d9980de7c0b88184
+      internalID: 1355872167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_10
+      name: "Steint\xFCr-ruine1-gro\xDF_13"
       rect:
         serializedVersion: 2
-        x: 110
+        x: 160
         y: 0
-        width: 110
-        height: 120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc68d798e02614b488781b2089c99e54
-      internalID: 1139627829
+      spriteID: 99f0f00a4e3828c4b9ab3eb7fa069e1c
+      internalID: 1756370193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_11
+      name: "Steint\xFCr-ruine1-gro\xDF_14"
       rect:
         serializedVersion: 2
-        x: 220
+        x: 320
         y: 0
-        width: 110
-        height: 120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1396d383a3bdde45991fda2e84f5afd
-      internalID: -1716334069
+      spriteID: 18b09e66db97df744b73be28ced068d3
+      internalID: 1167362968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pentagramm_12
+      name: "Steint\xFCr-ruine1-gro\xDF_15"
       rect:
         serializedVersion: 2
-        x: 330
+        x: 480
         y: 0
-        width: 110
-        height: 120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db80b0d4162e7dc4ea02189b7d1cf9fa
-      internalID: 1789178601
+      spriteID: 43a1ceb4336796d47a3b93ea9d247532
+      internalID: 116101317
       vertices: []
       indices: 
       edges: []
@@ -406,19 +469,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pentagramm_0: -173871249
-      pentagramm_1: 878251203
-      pentagramm_10: 1139627829
-      pentagramm_11: -1716334069
-      pentagramm_12: 1789178601
-      pentagramm_2: 1520402135
-      pentagramm_3: -1637180233
-      pentagramm_4: -1993968778
-      pentagramm_5: -1404017658
-      pentagramm_6: -1308521024
-      pentagramm_7: -2086306429
-      pentagramm_8: 50157785
-      pentagramm_9: -458563625
+      "Steint\xFCr-ruine1-gro\xDF_0": 1771793396
+      "Steint\xFCr-ruine1-gro\xDF_1": -1897705630
+      "Steint\xFCr-ruine1-gro\xDF_10": 1026804108
+      "Steint\xFCr-ruine1-gro\xDF_11": 960993457
+      "Steint\xFCr-ruine1-gro\xDF_12": 1355872167
+      "Steint\xFCr-ruine1-gro\xDF_13": 1756370193
+      "Steint\xFCr-ruine1-gro\xDF_14": 1167362968
+      "Steint\xFCr-ruine1-gro\xDF_15": 116101317
+      "Steint\xFCr-ruine1-gro\xDF_2": -1281733993
+      "Steint\xFCr-ruine1-gro\xDF_3": 1862663497
+      "Steint\xFCr-ruine1-gro\xDF_4": -536835751
+      "Steint\xFCr-ruine1-gro\xDF_5": -850242194
+      "Steint\xFCr-ruine1-gro\xDF_6": -698921835
+      "Steint\xFCr-ruine1-gro\xDF_7": -1132502134
+      "Steint\xFCr-ruine1-gro\xDF_8": -2100849603
+      "Steint\xFCr-ruine1-gro\xDF_9": -637813111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

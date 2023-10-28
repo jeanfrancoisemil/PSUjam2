@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float spawnTime = 1.8f;
+    public float spawnTime = 2f;
 
     private float _timer;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator doorAnimator;
+    private static readonly int DoorOpen = Animator.StringToHash("DoorOpen");
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.endWave)
+        {
+            doorAnimator.SetBool(DoorOpen, false);
+        }
+        else
+        {
+            doorAnimator.SetBool(DoorOpen, true);
+        }
         if (_timer > spawnTime)
         {
             GameManager.Instance.SpawnEnemy(transform.position);
