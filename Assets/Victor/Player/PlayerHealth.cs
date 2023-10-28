@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PlayerHealth : MonoBehaviour
 {
@@ -65,5 +66,6 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines();
         _renderer.color = Color.black;
         _dead = true;
+        SceneManager.LoadScene("GameOver");
     }
 }
