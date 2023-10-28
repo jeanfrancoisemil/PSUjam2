@@ -13,15 +13,19 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer _renderer;
     private bool _canTakeDamage;
     private bool _dead;
+
+    private CharacterController2D _CharacterController; 
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _initialColor = _renderer.color;
         _canTakeDamage = true;
+        _CharacterController = GetComponent<CharacterController2D>();
+        
     }
     public void DoDamage(int damage)
     {
-        if (!_canTakeDamage || _dead) return;
+        if (!_canTakeDamage || _dead || _CharacterController.isDashing) return;
         StartCoroutine(nameof(ChangeColor));
         StartCoroutine(nameof(ChangeCanTakeDamage));
         currentHealth -= damage;
