@@ -11,16 +11,17 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent dieEvent;
     private Color _initialColor;
     private SpriteRenderer _renderer;
-    private bool canTakeDamage;
-    private bool dead;
+    private bool _canTakeDamage;
+    private bool _dead;
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _initialColor = _renderer.color;
+        _canTakeDamage = true;
     }
     public void DoDamage(int damage)
     {
-        if (!canTakeDamage || dead) return;
+        if (!_canTakeDamage || _dead) return;
         StartCoroutine(nameof(ChangeColor));
         StartCoroutine(nameof(ChangeCanTakeDamage));
         currentHealth -= damage;
@@ -28,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+        Debug.Log(currentHealth);
     }
 
     IEnumerator ChangeColor()
@@ -38,9 +40,9 @@ public class PlayerHealth : MonoBehaviour
     }    
     IEnumerator ChangeCanTakeDamage()
     {
-        canTakeDamage = false;
+        _canTakeDamage = false;
         yield return new WaitForSeconds(0.2f);
-        canTakeDamage = true;
+        _canTakeDamage = true;
     }
     IEnumerator PoisonDamage(int damage, float waitTime)
     {
@@ -59,5 +61,6 @@ public class PlayerHealth : MonoBehaviour
     {
         dieEvent.Invoke();
         StopAllCoroutines();
+        _dead = true;
     }
 }

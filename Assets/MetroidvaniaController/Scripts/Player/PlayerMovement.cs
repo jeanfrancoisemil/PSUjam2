@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 
 		horizontalMove = moveActions * runSpeed;
 
-		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
 		if (jumpInput)
 		{
@@ -57,20 +56,7 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 		{
 			dash = true;
 		}
-
-		/*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
-		{
-			if (dashAxis == false)
-			{
-				dashAxis = true;
-				dash = true;
-			}
-		}
-		else
-		{
-			dashAxis = false;
-		}
-		*/
+		
 
 	}
 
