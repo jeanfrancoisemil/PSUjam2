@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         currentPatterns.Add(GenerateNewPattern(waveNumber + numberOfWavePredicted));
         currentEnemySpawnedCount = 0;
         _deathPresence = DeathSpawner.Instance != null;
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
     }
 
     public void SpawnEnemy(Vector3 pos)
@@ -43,19 +44,16 @@ public class GameManager : MonoBehaviour
             currentEnemySpawnedCount++;
         }
     }
-    [HideInInspector]public bool newWave;
     [HideInInspector]public bool endWave;
+    [HideInInspector]public bool endWave2;
     // Update is called once per frame
     void Update()
     {
-        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines)
+        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines && !endWave)
         {
             endWave = true;
+            endWave2 = true;
             StartCoroutine(StartMenuCoroutine());
-        }
-        else
-        {
-            newWave = false;
         }
     }
     private bool _coroutines;
@@ -64,20 +62,63 @@ public class GameManager : MonoBehaviour
         _coroutines = true;
         yield return new WaitForSeconds(3f);
         SpawnMenu();
-        NextWave();
-        newWave = true;
-        endWave = false;
+        endWave2 = false;
         _coroutines = false;
     }
     private float _savedTimeScale;
+    private Attack.WeaponSprite spriteOne;
+    private Attack.WeaponSprite SpriteTwo;
     private void SpawnMenu()
     {
         _savedTimeScale = Time.timeScale;
-        //Time.timeScale = 0;
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(true);
+        WeaponChoice.Instance.SetPause();
+        var weapons = Attack.Instance.FetchWeapons();
+        WeaponChoice.Instance.SetSprites(weapons[0],weapons[1]);
+        spriteOne = weapons[0];
+        SpriteTwo = weapons[1];
+        Time.timeScale = 0;
+    }
+    public void SetWeapon(int index)
+    {
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
+        if (index == 2)
+        {
+            StartCoroutine(nameof(DisplayMap));
+        }
+        else
+        {
+            if (index == 0)
+            {
+                Attack.Instance.SwitchWeapon(spriteOne.Index);
+            }
+            if (index == 1)
+            {
+                Attack.Instance.SwitchWeapon(SpriteTwo.Index);
+            }
+
+            NextWave();
+            
+            Time.timeScale = _savedTimeScale;
+        }
+        StartCoroutine(nameof(ResetEndWave));
+    }
+
+    IEnumerator ResetEndWave()
+    {
+        yield return new WaitForSeconds(15f);
+        endWave = false;
+    }
+    IEnumerator DisplayMap()
+    {
+        Time.timeScale = _savedTimeScale;
+        yield return new WaitForSeconds(10f);
+        NextWave();
+        endWave = false;
     }
     private void NextWave()
     {
-        if (_deathPresence && Random.Range(0, 20) == 10)
+        if (_deathPresence && Random.Range(0, 10) == 5)
         {
             StartCoroutine(nameof(SpawnDeath));
             DeathSpawner.Instance.SpawnDeath();
