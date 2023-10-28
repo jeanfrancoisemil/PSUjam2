@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             dieEvent.Invoke();
-            Die();
+            StartCoroutine(nameof(WaitToDie));
         }
     }
 
@@ -37,6 +37,13 @@ public class EnemyHealth : MonoBehaviour
         _renderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         _renderer.color = _color;
+    }
+    
+    IEnumerator WaitToDie()
+    {
+        
+        yield return new WaitForSeconds(0.1f);
+        Die();
     }
     
     public void Die()
