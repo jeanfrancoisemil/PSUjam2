@@ -9991,6 +9991,36 @@ MonoBehaviour:
   invincible: 0
   particleJumpUp: {fileID: 249016346307450186}
   particleJumpDown: {fileID: 4307267174948382998}
+  onJumpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4082255733222812375, guid: 1d686d0693ee79446a851a4b15b5b79a, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: jump
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDashEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4082255733222812375, guid: 1d686d0693ee79446a851a4b15b5b79a, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: dash
+          m_BoolArgument: 0
+        m_CallState: 2
   OnFallEvent:
     m_PersistentCalls:
       m_Calls:
@@ -10021,6 +10051,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4082255733222812375, guid: 1d686d0693ee79446a851a4b15b5b79a, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: land
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5695844563580217145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10040,8 +10082,21 @@ MonoBehaviour:
   - {fileID: -8659414478651179443, guid: 91cd80b93d9b8974a92a1270c47bfc11, type: 3}
   attackCheck: {fileID: 3961475747065601572}
   canAttack: 1
-  canSwitch: 0
-  cam: {fileID: 0}
+  attackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4082255733222812375, guid: 1d686d0693ee79446a851a4b15b5b79a, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: shoot
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3119461545812118771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10316,4 +10371,16 @@ MonoBehaviour:
   currentHealth: 0
   dieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4082255733222812375, guid: 1d686d0693ee79446a851a4b15b5b79a, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: playerDeath
+          m_BoolArgument: 0
+        m_CallState: 2
