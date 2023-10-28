@@ -7,29 +7,23 @@ using UnityEngine.InputSystem;
 public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeHorizontaleActions, Player.IArmeZoneActions, Player.ISwitchArmeActions
 {
 	public float dmgValue = 4;
-	public GameObject bullet;
+	public List<ThrowableWeapon> weapons;
 	public Transform attackCheck;
-	private Rigidbody2D m_Rigidbody2D;
-	public Animator animator;
-	public bool canAttack = true;
-	public bool isTimeToCheck = false;
-	String currentWeapon;
+	[HideInInspector]public bool canAttack = true;
 
-	private float armeVerticalDirr;
-	private float armeHorizontalDirr;
+
+	private float armeDirr;
 	private Vector2 armeZoneDirr;
 	private bool switchArme;
-
-	public bool canSwitch;
+	private ThrowableWeapon currentWeapon;
+	private WaitForSeconds _waitForSecondsSwitch;
+	private WaitForSeconds _waitForSecondsAttack;
+	[HideInInspector]public bool canSwitch;
 	
 	private Player player;
 	
 	public GameObject cam;
-
-	private void Awake()
-	{
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+	
 
 	// Start is called before the first frame update
 	void Start()
@@ -38,14 +32,15 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	    {
 		    player = new Player();
 	    }
-	    
+	    _waitForSecondsSwitch = new WaitForSeconds(0.25f);
+	    _waitForSecondsAttack = new WaitForSeconds(0.25f);
 	    player.ArmeVerticale.SetCallbacks(this);
 	    player.ArmeHorizontale.SetCallbacks(this);
 	    player.ArmeZone.SetCallbacks(this);
 	    player.SwitchArme.SetCallbacks(this);
 	    player.SwitchArme.Enable();
 
-	    currentWeapon = "WeaponHorizontal";
+	    currentWeapon = weapons[0];
 	    player.ArmeHorizontale.Enable();
 
 	    canSwitch = true;
@@ -56,96 +51,34 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
     void Update()
     {
 	    
-	    Debug.Log("current weapon = " + currentWeapon);
-	    
 	    if (switchArme)
 	    {
-		    Debug.Log("tentative de switch");
 		    if(!canSwitch) return;
-		    
-		    Debug.Log("switch sucess");
-		    if (currentWeapon == "WeaponHorizontal")
-		    {
-			    SwitchWeapon("WeaponVertical");
-			    StartCoroutine(SwitchCooldownn());
-			    return;
-		    }
-		    if (currentWeapon == "WeaponVertical")
-		    {
-			    SwitchWeapon("WeaponZone");
-			    StartCoroutine(SwitchCooldownn());
-
-			    return;
-		    }
-		    if (currentWeapon == "WeaponZone")
-		    {
-			    SwitchWeapon("WeaponHorizontal");
-			    StartCoroutine(SwitchCooldownn());
-
-			    return;
-		    }
+		    var index = weapons.IndexOf(currentWeapon);
+		    currentWeapon = index == weapons.Count - 1 ? weapons[0] : weapons[index + 1];
 	    }
 
-	    if (player.ArmeVerticale.enabled)
+
+	    if (armeDirr != 0 && canAttack)
 	    {
-		    if (armeVerticalDirr != 0f)
-		    {
-			    if(!canAttack){return;}
-				
-			    GameObject throwableWeapon = Instantiate(bullet, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			    Vector2 direction = new Vector2(0, armeVerticalDirr);
-			    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-			    throwableWeapon.name = "ThrowableWeapon";
-
-			    StartCoroutine(AttackCooldown());
-
-		    }
-	    }
-
-	    if (player.ArmeHorizontale.enabled)
-	    {
-		    if (armeHorizontalDirr != 0f)
-		    {
-			    if(!canAttack){return;}
-				
-			    GameObject throwableWeapon = Instantiate(bullet, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			    Vector2 direction = new Vector2(armeHorizontalDirr, 0);
-			    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-			    throwableWeapon.name = "ThrowableWeapon";
-		    
-			    StartCoroutine(AttackCooldown());
-				
-		    }
-	    }
-
-	    if (player.ArmeZone.enabled)
-	    {
-		    if (armeZoneDirr.y != 0 && armeZoneDirr.x != 0)
-		    {
-			    if(!canAttack){return;}
-				
-			    Debug.Log("tentative de shoot zone");
-			    
-			    GameObject throwableWeapon = Instantiate(bullet, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			    Vector2 direction = new Vector2(armeZoneDirr.x, armeZoneDirr.y); 
-			    throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-			    throwableWeapon.name = "ThrowableWeapon";
-		    
-			    StartCoroutine(AttackCooldown());
-		    }
+		    var transform1 = transform;
+		    var throwableWeapon = Instantiate(currentWeapon, transform1.position + new Vector3(transform1.localScale.x * 0.5f,0f), Quaternion.identity); 
+		    throwableWeapon.positiveDirection = armeDirr>0f; 
+		    throwableWeapon.name = "ThrowableWeapon";
+		    StartCoroutine(AttackCooldown()); 
 	    }
 	}
 
 	IEnumerator AttackCooldown()
 	{
 		canAttack = false;
-		yield return new WaitForSeconds(0.25f);
+		yield return _waitForSecondsAttack;
 		canAttack = true;
 	}
 	IEnumerator SwitchCooldownn()
 	{
 		canSwitch = false;
-		yield return new WaitForSeconds(0.25f);
+		yield return _waitForSecondsSwitch;
 		canSwitch = true;
 	}
 
@@ -168,43 +101,42 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		}
 	}
 
-	void SwitchWeapon(String weapon)
+	void SwitchWeapon(int index)
 	{
-		Debug.Log("switch !");
 		
-		bullet = GameObject.Find(weapon).GetComponentInChildren<ThrowableWeapon>().gameObject;
 		
-		if (weapon == "WeaponHorizontal")
+		currentWeapon = weapons[index];
+		
+		if (currentWeapon.arme == ThrowableWeapon.TypeArme.Horizontale)
 		{
 			player.ArmeVerticale.Disable();
 			player.ArmeZone.Disable();
 			player.ArmeHorizontale.Enable();
 		}
-		else if (weapon == "WeaponVertical")
+		else if (currentWeapon.arme == ThrowableWeapon.TypeArme.Verticale)
 		{
 			player.ArmeVerticale.Enable();
 			player.ArmeZone.Disable();
 			player.ArmeHorizontale.Disable();
 		}
-		else if (weapon == "WeaponZone")
+		else if (currentWeapon.arme == ThrowableWeapon.TypeArme.Zone)
 		{
 			player.ArmeVerticale.Disable();
 			player.ArmeZone.Enable();
 			player.ArmeHorizontale.Disable();
 		}
 
-		currentWeapon = weapon;
 
 	}
 
 	public void OnShootUp(InputAction.CallbackContext context)
 	{
-		armeVerticalDirr = context.ReadValue<float>();
+		armeDirr = context.ReadValue<float>();
 	}
 
 	public void OnShootRight(InputAction.CallbackContext context)
 	{
-		armeHorizontalDirr = context.ReadValue<float>();
+		armeDirr = context.ReadValue<float>();
 	}
 
 	public void OnShootDir(InputAction.CallbackContext context)
@@ -216,4 +148,5 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	{
 		switchArme = context.performed;
 	}
+
 }

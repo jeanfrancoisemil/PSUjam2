@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool dash = false;
+	private static readonly int Grounded = Animator.StringToHash("Grounded");
 
 	//bool dashAxis = false;
 
@@ -75,17 +76,18 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 
 	public void OnFall()
 	{
-		animator.SetBool("IsJumping", true);
+		animator.SetBool(Grounded, false);
 	}
 
 	public void OnLanding()
 	{
-		animator.SetBool("IsJumping", false);
+		animator.SetBool(Grounded, true);
 	}
 
 	public void GoDown()
 	{
-		this.transform.position.Set(this.transform.position.x, this.transform.position.y-10, this.transform.position.z);
+		var position = this.transform.position;
+		position.Set(position.x, position.y-10, position.z);
 	}
 
 	void FixedUpdate ()

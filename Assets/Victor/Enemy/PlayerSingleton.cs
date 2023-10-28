@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [DefaultExecutionOrder(-1)]
+[RequireComponent(typeof(PlayerHealth))]
 public class PlayerSingleton : MonoBehaviour
 {
     public static PlayerSingleton Instance;

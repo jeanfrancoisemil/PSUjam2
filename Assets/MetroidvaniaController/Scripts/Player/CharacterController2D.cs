@@ -246,6 +246,10 @@ public class CharacterController2D : MonoBehaviour
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 				canDoubleJump = true;
 			}
+			else
+			{
+				animator.SetBool("IsJumping", false);
+			}
 		}
 	}
 

@@ -639,7 +639,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1672063850}
         m_TargetAssemblyTypeName: LogicScripts, Assembly-CSharp
-        m_MethodName: loadgame
+        m_MethodName: Loadgame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
