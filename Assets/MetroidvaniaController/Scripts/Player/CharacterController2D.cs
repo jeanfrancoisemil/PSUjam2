@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_WallCheck;								//Posicion que controla si el personaje toca una pared
-	
+
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
@@ -44,9 +44,6 @@ public class CharacterController2D : MonoBehaviour
 	[Header("Events")]
 	[Space]
 
-	//events
-	public UnityEvent onJumpEvent;
-	public UnityEvent onDashEvent;
 	public UnityEvent OnFallEvent;
 	public UnityEvent OnLandEvent;
 
@@ -215,7 +212,6 @@ public class CharacterController2D : MonoBehaviour
 
 				if (jump && isWallSliding)
 				{
-					onJumpEvent.Invoke();
 					animator.SetBool("IsJumping", true);
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
@@ -284,7 +280,6 @@ public class CharacterController2D : MonoBehaviour
 
 	IEnumerator DashCooldown()
 	{
-		onDashEvent.Invoke();
 		isDashing = true;
 		canDash = false;
 		yield return new WaitForSeconds(0.1f);
