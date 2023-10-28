@@ -153,4 +153,4 @@ MonoBehaviour:
   speed: 10
   speedFollowPlayer: 50
   fullView: 15
-  closeView: 3
+  closeView: 5

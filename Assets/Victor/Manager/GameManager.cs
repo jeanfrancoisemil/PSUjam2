@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
             
             //StartCoroutine(nameof(Aiguille));
             //AiguilleController.Instance.gameObject.SetActive(true);
+            WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
             Time.timeScale = _savedTimeScale;
             
         }
