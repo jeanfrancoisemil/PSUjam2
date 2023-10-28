@@ -183,6 +183,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142048622210212856, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664945366924710543, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
       propertyPath: m_DashForce
       value: 30
@@ -194,6 +210,30 @@ PrefabInstance:
     - target: {fileID: 3119461545812118771, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
       propertyPath: runSpeed
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508235687900328176, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: ForceModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8128299575378292301, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
       propertyPath: initialHealth
