@@ -103,6 +103,15 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		    throwableWeapon.name = "ThrowableWeapon";
 		    StartCoroutine(AttackCooldown()); 
 	    }
+
+	    if (armeZoneDirr != Vector2.zero && canAttack)
+	    {
+		    var transform1 = transform;
+		    var throwableWeapon = Instantiate(currentWeapon, transform1.position + new Vector3(transform1.localScale.x * 0.5f,0f), Quaternion.identity); 
+		    throwableWeapon.positiveDirection = armeZoneDirr.x>0f; 
+		    throwableWeapon.name = "ThrowableWeapon";
+		    StartCoroutine(AttackCooldown()); 
+	    }
 	}
 
 	IEnumerator AttackCooldown()
