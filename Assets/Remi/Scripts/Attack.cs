@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
@@ -21,8 +22,8 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	private WaitForSeconds _waitForSecondsAttack;
 	
 	private Player player;
-	
-	
+
+	public UnityEvent attackEvent;
 
 	// Start is called before the first frame update
 	void Start()
@@ -106,6 +107,7 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 
 	IEnumerator AttackCooldown()
 	{
+		attackEvent.Invoke();
 		canAttack = false;
 		yield return _waitForSecondsAttack;
 		canAttack = true;
