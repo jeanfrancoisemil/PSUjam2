@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     }
     private void NextWave()
     {
-        if (_deathPresence && Random.Range(0, 20) <= 20)
+        if (_deathPresence && Random.Range(0, 20) == 10)
         {
             StartCoroutine(nameof(SpawnDeath));
             DeathSpawner.Instance.SpawnDeath();

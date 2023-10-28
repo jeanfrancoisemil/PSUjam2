@@ -125,7 +125,6 @@ public class EnemyMovement : MonoBehaviour
                 }
                 if (_touchingPlayer)
                 {
-                    Debug.Log("Touching Player");
                     _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
                     _followHealth.DoDamage(1);
                 }

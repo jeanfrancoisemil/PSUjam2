@@ -360,6 +360,54 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""WavePause"",
+            ""id"": ""ae421471-5711-463c-8720-7bb773b79490"",
+            ""actions"": [
+                {
+                    ""name"": ""LeftButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a9358dd-7650-4957-aec9-906f11d01d24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""25417ce3-f669-4c3f-ab03-d2efc70d2188"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""bfd737e3-41c8-4239-9915-eb32cc77743c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a1c656e-4b41-4183-bba3-338e72c5edb8"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -385,6 +433,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Scroll = m_Camera.FindAction("Scroll", throwIfNotFound: true);
+        // WavePause
+        m_WavePause = asset.FindActionMap("WavePause", throwIfNotFound: true);
+        m_WavePause_LeftButton = m_WavePause.FindAction("LeftButton", throwIfNotFound: true);
+        m_WavePause_RightButton = m_WavePause.FindAction("RightButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -742,6 +794,60 @@ public partial class @Player: IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // WavePause
+    private readonly InputActionMap m_WavePause;
+    private List<IWavePauseActions> m_WavePauseActionsCallbackInterfaces = new List<IWavePauseActions>();
+    private readonly InputAction m_WavePause_LeftButton;
+    private readonly InputAction m_WavePause_RightButton;
+    public struct WavePauseActions
+    {
+        private @Player m_Wrapper;
+        public WavePauseActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftButton => m_Wrapper.m_WavePause_LeftButton;
+        public InputAction @RightButton => m_Wrapper.m_WavePause_RightButton;
+        public InputActionMap Get() { return m_Wrapper.m_WavePause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WavePauseActions set) { return set.Get(); }
+        public void AddCallbacks(IWavePauseActions instance)
+        {
+            if (instance == null || m_Wrapper.m_WavePauseActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_WavePauseActionsCallbackInterfaces.Add(instance);
+            @LeftButton.started += instance.OnLeftButton;
+            @LeftButton.performed += instance.OnLeftButton;
+            @LeftButton.canceled += instance.OnLeftButton;
+            @RightButton.started += instance.OnRightButton;
+            @RightButton.performed += instance.OnRightButton;
+            @RightButton.canceled += instance.OnRightButton;
+        }
+
+        private void UnregisterCallbacks(IWavePauseActions instance)
+        {
+            @LeftButton.started -= instance.OnLeftButton;
+            @LeftButton.performed -= instance.OnLeftButton;
+            @LeftButton.canceled -= instance.OnLeftButton;
+            @RightButton.started -= instance.OnRightButton;
+            @RightButton.performed -= instance.OnRightButton;
+            @RightButton.canceled -= instance.OnRightButton;
+        }
+
+        public void RemoveCallbacks(IWavePauseActions instance)
+        {
+            if (m_Wrapper.m_WavePauseActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IWavePauseActions instance)
+        {
+            foreach (var item in m_Wrapper.m_WavePauseActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_WavePauseActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public WavePauseActions @WavePause => new WavePauseActions(this);
     public interface IMainActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -768,5 +874,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
     public interface ICameraActions
     {
         void OnScroll(InputAction.CallbackContext context);
+    }
+    public interface IWavePauseActions
+    {
+        void OnLeftButton(InputAction.CallbackContext context);
+        void OnRightButton(InputAction.CallbackContext context);
     }
 }

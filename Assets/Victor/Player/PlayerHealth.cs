@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
@@ -9,7 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public float initialHealth;
     [HideInInspector]public float currentHealth;
     public UnityEvent dieEvent;
-    private Color _initialColor;
     private SpriteRenderer _renderer;
     private bool _canTakeDamage;
     private bool _dead;
@@ -18,10 +18,9 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
-        _initialColor = _renderer.color;
         _canTakeDamage = true;
         _CharacterController = GetComponent<CharacterController2D>();
-        
+        currentHealth = initialHealth;
     }
     public void DoDamage(int damage)
     {
@@ -33,7 +32,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
-        Debug.Log(currentHealth);
     }
 
     IEnumerator ChangeColor()
