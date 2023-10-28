@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int numberOfWavePredicted = 6;
     [HideInInspector]public int waveNumber = 0;
     public List<PatternElement> currentPatterns = new List<PatternElement>();
+    public EnemyMovement deathPrefab;
+    public DeathSpawner DeathSpawner;
     public PatternElement patternOfWave;
     public List<EnemyMovement> enemiesPrefabs;
     [HideInInspector]public int currentEnemySpawnedCount;
@@ -52,6 +54,10 @@ public class GameManager : MonoBehaviour
 
     private void NextWave()
     {
+        if (Random.Range(0, 20) == 10)
+        {
+            
+        }
         waveNumber++;
         currentPatterns.RemoveAt(0);
         patternOfWave = currentPatterns[0];
@@ -60,7 +66,7 @@ public class GameManager : MonoBehaviour
     }
 
     private PatternElement GenerateNewPattern(int waveIndex)
-    {
+    { 
         return new PatternElement()
         {
             EnemyCount = 5 + waveIndex * 2,

@@ -55,7 +55,8 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	    {
 		    if(!canSwitch) return;
 		    var index = weapons.IndexOf(currentWeapon);
-		    currentWeapon = index == weapons.Count - 1 ? weapons[0] : weapons[index + 1];
+		    var newIndex = index == weapons.Count - 1 ? 0 : index + 1;
+		    SwitchWeapon(newIndex);
 	    }
 
 

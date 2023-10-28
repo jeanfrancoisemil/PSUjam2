@@ -7,6 +7,13 @@ using Random = System.Random;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        ShootingVertical,
+        ShootingHorizontal,
+        Death
+    }
+    public EnemyType enemyType;
     private Rigidbody2D _follow;
     private PlayerHealth _followHealth;
     public float teleportationThreshold;
@@ -35,54 +42,97 @@ public class EnemyMovement : MonoBehaviour
         
 
         var position = transform.position;
-        if (Mathf.Abs(_follow.transform.position.x -position.x)>1f )
+        switch (enemyType)
         {
-            Utils.ApplyForceToReachVelocity(_rigidbody2D, new Vector2(Mathf.Sign(_follow.transform.position.x-position.x),0f) * speed, force);
-            _touchingPlayer = false;
-            if (_follow.transform.position.y - position.y>5f &&  Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1.5f, groundMask.value))
-            {
-                if (teleportationThreshold < _teleportationWaitingTime)
+            case EnemyType.ShootingHorizontal:
+                if (Mathf.Abs(_follow.transform.position.x -position.x)>1f )
                 {
-                    Teleport();
-                    _teleportationWaitingTime = 0f;
+                    Utils.ApplyForceToReachVelocity(_rigidbody2D, new Vector2(Mathf.Sign(_follow.transform.position.x-position.x),0f) * speed, force);
+                    _touchingPlayer = false;
+                    if (_follow.transform.position.y - position.y>5f &&  Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1.5f, groundMask.value))
+                    {
+                        if (teleportationThreshold < _teleportationWaitingTime)
+                        {
+                            Teleport();
+                            _teleportationWaitingTime = 0f;
+                        }
+                        else
+                        {
+                            _teleportationWaitingTime += Time.deltaTime;
+                        }
+                        _touchingPlayer = false;
+                    }
                 }
                 else
-                {
-                    _teleportationWaitingTime += Time.deltaTime;
+                {   
+                    if (Mathf.Abs(_follow.transform.position.y - position.y)>1f &&  Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1.5f, groundMask.value))
+                    {
+                        if (teleportationThreshold < _teleportationWaitingTime)
+                        {
+                            Teleport();
+                            _teleportationWaitingTime = 0f;
+                        }
+                        else
+                        {
+                            _teleportationWaitingTime += Time.deltaTime;
+                        }
+                        _touchingPlayer = false;
+                    }
+                    else
+                    {
+                        if (Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1f, groundMask.value))
+                        {
+                            _rigidbody2D.velocity = Vector2.zero;   
+                        }
+                        _touchingPlayer = true;
+                    } 
                 }
-                _touchingPlayer = false;
-            }
-        }
-        else
-        {   
-            if (Mathf.Abs(_follow.transform.position.y - position.y)>1f &&  Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1.5f, groundMask.value))
-            {
-                if (teleportationThreshold < _teleportationWaitingTime)
+                if (_touchingPlayer)
                 {
-                    Teleport();
-                    _teleportationWaitingTime = 0f;
+                    _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
+                    _followHealth.DoDamage(1);
+                }
+                break;
+            case EnemyType.ShootingVertical:
+                if (Mathf.Abs(_follow.transform.position.x -position.x)>1f )
+                {
+                    Utils.ApplyForceToReachVelocity(_rigidbody2D, new Vector2(Mathf.Sign(_follow.transform.position.x-position.x),0f) * speed, force);
+                    _touchingPlayer = true;
+                    
                 }
                 else
-                {
-                    _teleportationWaitingTime += Time.deltaTime;
+                {   
+                    if (Mathf.Abs(_follow.transform.position.y - position.y)>1f &&  Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1.5f, groundMask.value))
+                    {
+                        if (teleportationThreshold < _teleportationWaitingTime)
+                        {
+                            Teleport();
+                            _teleportationWaitingTime = 0f;
+                        }
+                        else
+                        {
+                            _teleportationWaitingTime += Time.deltaTime;
+                        }
+                        _touchingPlayer = false;
+                    }
+                    else
+                    {
+                        if (Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1f, groundMask.value))
+                        {
+                            _rigidbody2D.velocity = Vector2.zero;   
+                        }
+                        _touchingPlayer = true;
+                    } 
                 }
-                _touchingPlayer = false;
-            }
-            else
-            {
-                if (Physics2D.Raycast(transform.position, new Vector2(0f, -1), 1f, groundMask.value))
+                if (_touchingPlayer)
                 {
-                    _rigidbody2D.velocity = Vector2.zero;   
+                    Debug.Log("Touching Player");
+                    _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
+                    _followHealth.DoDamage(1);
                 }
-                _touchingPlayer = true;
-            } 
+                break;
         }
-        if (_touchingPlayer)
-        {
-            Debug.Log("Touching Player");
-            _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
-            _followHealth.DoDamage(1);
-        }
+ 
     }
 
     public void Teleport()

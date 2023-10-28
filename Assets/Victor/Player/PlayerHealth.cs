@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private Color _initialColor;
     private SpriteRenderer _renderer;
     private bool canTakeDamage;
+    private bool dead;
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -19,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void DoDamage(int damage)
     {
-        if (!canTakeDamage) return;
+        if (!canTakeDamage || dead) return;
         StartCoroutine(nameof(ChangeColor));
         StartCoroutine(nameof(ChangeCanTakeDamage));
         currentHealth -= damage;
@@ -54,9 +55,8 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
-        Debug.Log("Dead");
         dieEvent.Invoke();
         StopAllCoroutines();
     }
