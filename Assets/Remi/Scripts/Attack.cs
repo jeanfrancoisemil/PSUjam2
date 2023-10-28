@@ -3,31 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
-public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeHorizontaleActions, Player.IArmeZoneActions, Player.ISwitchArmeActions
+public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeHorizontaleActions, Player.IArmeZoneActions
 {
 	public float dmgValue = 4;
 	public List<ThrowableWeapon> weapons;
+	private List<Sprite> _weaponsSprites;
 	public Transform attackCheck;
 	[HideInInspector]public bool canAttack = true;
 
-
+	public static Attack Instance;
 	private float armeDirr;
 	private Vector2 armeZoneDirr;
-	private bool switchArme;
 	private ThrowableWeapon currentWeapon;
 	private WaitForSeconds _waitForSecondsSwitch;
 	private WaitForSeconds _waitForSecondsAttack;
-	[HideInInspector]public bool canSwitch;
 	
 	private Player player;
 	
-	public GameObject cam;
 	
 
 	// Start is called before the first frame update
 	void Start()
     {
+	    if (Instance == null)
+	    {
+		    Instance = this;
+	    }
+	    else
+	    {
+		    Destroy(this);
+	    }
+	    
 	    if (PlayerInputs.Player != null)
 	    {
 		    player = PlayerInputs.Player;   
@@ -41,30 +49,56 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	    player.ArmeVerticale.SetCallbacks(this);
 	    player.ArmeHorizontale.SetCallbacks(this);
 	    player.ArmeZone.SetCallbacks(this);
-	    player.SwitchArme.SetCallbacks(this);
-	    player.SwitchArme.Enable();
 
 	    currentWeapon = weapons[0];
 	    player.ArmeHorizontale.Enable();
 
-	    canSwitch = true;
 
+	    _weaponsSprites = new List<Sprite>();
+	    for (int i = 0; i < weapons.Count; i++)
+	    {
+		    _weaponsSprites.Add(weapons[i].GetComponent<SpriteRenderer>().sprite);
+	    }
+		SwitchWeapon(0);
     }
+	public struct WeaponSprite
+	{
+		public int Index;
+		public Sprite Sprite;
+	}
+	public WeaponSprite[] FetchWeapons()
+	{
+		var results = new WeaponSprite[2];
+		var index1 = Random.Range(0, 3);
+		var index2 = Random.Range(0, 3);
+		if (index1 == index2)
+		{
+			if (index1 == 0)
+			{
+				index2 = 1;
+			}
+			else
+			{
+				index2 = index2 - 1;
+			}
+		}
+		results[0] = new WeaponSprite()
+		{
+			Index = index1,
+			Sprite = _weaponsSprites[index1]
+		};
+		results[1] = new WeaponSprite()
+		{
+			Index = index2,
+			Sprite = _weaponsSprites[index2]
+		};
+		return results;
+	}
 
     // Update is called once per frame
     void Update()
     {
 	    
-	    if (switchArme)
-	    {
-		    if (canSwitch)
-		    {
-			    var index = weapons.IndexOf(currentWeapon);
-			    var newIndex = index == weapons.Count - 1 ? 0 : index + 1;
-			    SwitchWeapon(newIndex);	
-		    }
-		    switchArme = false;
-	    }
 
 
 	    if (armeDirr != 0 && canAttack)
@@ -83,33 +117,10 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		yield return _waitForSecondsAttack;
 		canAttack = true;
 	}
-	IEnumerator SwitchCooldownn()
-	{
-		canSwitch = false;
-		yield return _waitForSecondsSwitch;
-		canSwitch = true;
-	}
 
+	
 
-	public void DoDashDamage()
-	{
-		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
-		for (int i = 0; i < collidersEnemies.Length; i++)
-		{
-			if (collidersEnemies[i].gameObject.tag == "Enemy")
-			{
-				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
-				{
-					dmgValue = -dmgValue;
-				}
-				collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
-				cam.GetComponent<CameraFollow>().ShakeCamera();
-			}
-		}
-	}
-
-	void SwitchWeapon(int index)
+	public void SwitchWeapon(int index)
 	{
 		
 		
@@ -152,12 +163,6 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 		armeZoneDirr = context.ReadValue<Vector2>();
 	}
 
-	public void OnSwitch(InputAction.CallbackContext context)
-	{
-		if (context.started)
-		{
-			switchArme = true;
-		}
-	}
+
 
 }

@@ -306,34 +306,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""SwitchArme"",
-            ""id"": ""138a7b30-ac9a-4d95-b617-cd453db1c9a1"",
-            ""actions"": [
-                {
-                    ""name"": ""Switch"",
-                    ""type"": ""Button"",
-                    ""id"": ""b2835f4f-006c-4918-8810-f6186110cec1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""17e043d6-8f02-44ab-ac84-a28d1b170582"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Switch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Camera"",
             ""id"": ""6fcaad33-f079-4ad5-a770-4b3d7c5f11bf"",
             ""actions"": [
@@ -382,6 +354,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb509ec3-aeb5-4fb6-9cd0-da5b91ef492f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -406,6 +387,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""RightButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7003ff4a-2525-4c38-a948-7a634f1065ea"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28ae6218-cd18-474a-adf2-d984c4b8b5d8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -427,9 +430,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         // ArmeZone
         m_ArmeZone = asset.FindActionMap("ArmeZone", throwIfNotFound: true);
         m_ArmeZone_ShootDir = m_ArmeZone.FindAction("ShootDir", throwIfNotFound: true);
-        // SwitchArme
-        m_SwitchArme = asset.FindActionMap("SwitchArme", throwIfNotFound: true);
-        m_SwitchArme_Switch = m_SwitchArme.FindAction("Switch", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Scroll = m_Camera.FindAction("Scroll", throwIfNotFound: true);
@@ -437,6 +437,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_WavePause = asset.FindActionMap("WavePause", throwIfNotFound: true);
         m_WavePause_LeftButton = m_WavePause.FindAction("LeftButton", throwIfNotFound: true);
         m_WavePause_RightButton = m_WavePause.FindAction("RightButton", throwIfNotFound: true);
+        m_WavePause_Enter = m_WavePause.FindAction("Enter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -703,52 +704,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
     }
     public ArmeZoneActions @ArmeZone => new ArmeZoneActions(this);
 
-    // SwitchArme
-    private readonly InputActionMap m_SwitchArme;
-    private List<ISwitchArmeActions> m_SwitchArmeActionsCallbackInterfaces = new List<ISwitchArmeActions>();
-    private readonly InputAction m_SwitchArme_Switch;
-    public struct SwitchArmeActions
-    {
-        private @Player m_Wrapper;
-        public SwitchArmeActions(@Player wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Switch => m_Wrapper.m_SwitchArme_Switch;
-        public InputActionMap Get() { return m_Wrapper.m_SwitchArme; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SwitchArmeActions set) { return set.Get(); }
-        public void AddCallbacks(ISwitchArmeActions instance)
-        {
-            if (instance == null || m_Wrapper.m_SwitchArmeActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_SwitchArmeActionsCallbackInterfaces.Add(instance);
-            @Switch.started += instance.OnSwitch;
-            @Switch.performed += instance.OnSwitch;
-            @Switch.canceled += instance.OnSwitch;
-        }
-
-        private void UnregisterCallbacks(ISwitchArmeActions instance)
-        {
-            @Switch.started -= instance.OnSwitch;
-            @Switch.performed -= instance.OnSwitch;
-            @Switch.canceled -= instance.OnSwitch;
-        }
-
-        public void RemoveCallbacks(ISwitchArmeActions instance)
-        {
-            if (m_Wrapper.m_SwitchArmeActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(ISwitchArmeActions instance)
-        {
-            foreach (var item in m_Wrapper.m_SwitchArmeActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_SwitchArmeActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public SwitchArmeActions @SwitchArme => new SwitchArmeActions(this);
-
     // Camera
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
@@ -800,12 +755,14 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private List<IWavePauseActions> m_WavePauseActionsCallbackInterfaces = new List<IWavePauseActions>();
     private readonly InputAction m_WavePause_LeftButton;
     private readonly InputAction m_WavePause_RightButton;
+    private readonly InputAction m_WavePause_Enter;
     public struct WavePauseActions
     {
         private @Player m_Wrapper;
         public WavePauseActions(@Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftButton => m_Wrapper.m_WavePause_LeftButton;
         public InputAction @RightButton => m_Wrapper.m_WavePause_RightButton;
+        public InputAction @Enter => m_Wrapper.m_WavePause_Enter;
         public InputActionMap Get() { return m_Wrapper.m_WavePause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -821,6 +778,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @RightButton.started += instance.OnRightButton;
             @RightButton.performed += instance.OnRightButton;
             @RightButton.canceled += instance.OnRightButton;
+            @Enter.started += instance.OnEnter;
+            @Enter.performed += instance.OnEnter;
+            @Enter.canceled += instance.OnEnter;
         }
 
         private void UnregisterCallbacks(IWavePauseActions instance)
@@ -831,6 +791,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @RightButton.started -= instance.OnRightButton;
             @RightButton.performed -= instance.OnRightButton;
             @RightButton.canceled -= instance.OnRightButton;
+            @Enter.started -= instance.OnEnter;
+            @Enter.performed -= instance.OnEnter;
+            @Enter.canceled -= instance.OnEnter;
         }
 
         public void RemoveCallbacks(IWavePauseActions instance)
@@ -867,10 +830,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
     {
         void OnShootDir(InputAction.CallbackContext context);
     }
-    public interface ISwitchArmeActions
-    {
-        void OnSwitch(InputAction.CallbackContext context);
-    }
     public interface ICameraActions
     {
         void OnScroll(InputAction.CallbackContext context);
@@ -879,5 +838,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
     {
         void OnLeftButton(InputAction.CallbackContext context);
         void OnRightButton(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
     }
 }

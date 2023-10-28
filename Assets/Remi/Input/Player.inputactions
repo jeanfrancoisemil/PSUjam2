@@ -284,34 +284,6 @@
             ]
         },
         {
-            "name": "SwitchArme",
-            "id": "138a7b30-ac9a-4d95-b617-cd453db1c9a1",
-            "actions": [
-                {
-                    "name": "Switch",
-                    "type": "Button",
-                    "id": "b2835f4f-006c-4918-8810-f6186110cec1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "17e043d6-8f02-44ab-ac84-a28d1b170582",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Switch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Camera",
             "id": "6fcaad33-f079-4ad5-a770-4b3d7c5f11bf",
             "actions": [
@@ -360,6 +332,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "bb509ec3-aeb5-4fb6-9cd0-da5b91ef492f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -382,6 +363,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7003ff4a-2525-4c38-a948-7a634f1065ea",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28ae6218-cd18-474a-adf2-d984c4b8b5d8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

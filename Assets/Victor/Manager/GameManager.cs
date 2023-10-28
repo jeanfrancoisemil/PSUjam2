@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         currentPatterns.Add(GenerateNewPattern(waveNumber + numberOfWavePredicted));
         currentEnemySpawnedCount = 0;
         _deathPresence = DeathSpawner.Instance != null;
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
     }
 
     public void SpawnEnemy(Vector3 pos)
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines)
+        if (Instance.transform.childCount == 0 && currentEnemySpawnedCount==patternOfWave.EnemyCount && !_coroutines && !endWave)
         {
             endWave = true;
             StartCoroutine(StartMenuCoroutine());
@@ -64,16 +65,62 @@ public class GameManager : MonoBehaviour
         _coroutines = true;
         yield return new WaitForSeconds(3f);
         SpawnMenu();
-        NextWave();
-        newWave = true;
-        endWave = false;
+
         _coroutines = false;
     }
     private float _savedTimeScale;
+    private Attack.WeaponSprite spriteOne;
+    private Attack.WeaponSprite SpriteTwo;
     private void SpawnMenu()
     {
         _savedTimeScale = Time.timeScale;
-        //Time.timeScale = 0;
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(true);
+        WeaponChoice.Instance.SetPause();
+        var weapons = Attack.Instance.FetchWeapons();
+        WeaponChoice.Instance.SetSprites(weapons[0],weapons[1]);
+        spriteOne = weapons[0];
+        SpriteTwo = weapons[1];
+        Time.timeScale = 0;
+    }
+    public void SetWeapon(int index)
+    {
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
+        if (index == 2)
+        {
+            StartCoroutine(nameof(DisplayMap));
+        }
+        else
+        {
+            if (index == 0)
+            {
+                Attack.Instance.SwitchWeapon(spriteOne.Index);
+            }
+            if (index == 1)
+            {
+                Attack.Instance.SwitchWeapon(SpriteTwo.Index);
+            }
+
+            NextWave();
+            
+            Time.timeScale = _savedTimeScale;
+            newWave = true;
+            endWave = false;            
+        }
+        StartCoroutine(nameof(ResetEndWave));
+    }
+
+    IEnumerator ResetEndWave()
+    {
+        yield return new WaitForSeconds(12f);
+        endWave = false;
+    }
+    IEnumerator DisplayMap()
+    {
+        yield return new WaitForSeconds(10f);
+        NextWave();
+        Time.timeScale = _savedTimeScale;
+        newWave = true;
+        endWave = false;
     }
     private void NextWave()
     {
