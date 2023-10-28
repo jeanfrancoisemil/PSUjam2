@@ -64,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
     {
         dieEvent.Invoke();
         StopAllCoroutines();
-        _renderer.color = Color.white;
+        _renderer.color = Color.black;
         _dead = true;
         SceneManager.LoadScene("GameOver");
     }

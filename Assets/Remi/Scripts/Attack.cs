@@ -68,30 +68,23 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	}
 	public WeaponSprite[] FetchWeapons()
 	{
+		var list = new List<int>()
+		{
+			0,
+			1,
+			2
+		};
+		list.Remove(weapons.IndexOf(currentWeapon));
+	
 		var results = new WeaponSprite[2];
-		var index1 = Random.Range(0, 3);
-		var index2 = Random.Range(0, 3);
-		if (index1 == index2)
+		for (int i = 0; i < 2; i++)
 		{
-			if (index1 == 0)
+			results[i] = new WeaponSprite()
 			{
-				index2 = 1;
-			}
-			else
-			{
-				index2 = index2 - 1;
-			}
+				Index = list[i],
+				Sprite = _weaponsSprites[list[i]]
+			};
 		}
-		results[0] = new WeaponSprite()
-		{
-			Index = index1,
-			Sprite = _weaponsSprites[index1]
-		};
-		results[1] = new WeaponSprite()
-		{
-			Index = index2,
-			Sprite = _weaponsSprites[index2]
-		};
 		return results;
 	}
 
