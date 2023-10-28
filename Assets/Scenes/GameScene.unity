@@ -171,58 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 131836921095861080, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 249016346307450186, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142048622210212856, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508235687900328176, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: autoRandomSeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: ForceModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: TrailModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307267174948382998, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128299575378292301, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: dieEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128299575378292301, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
-      propertyPath: dieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9086965292106848712, guid: c29ed8dfa43474549a2709ec1fbfbf0d, type: 3}
       propertyPath: m_Name
       value: DrawCharacter

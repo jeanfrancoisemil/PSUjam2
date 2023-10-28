@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
     [HideInInspector]public int currentHealth;
     private SpriteRenderer _renderer;
     private Color _color;
+
+    public UnityEvent dieEvent;
+    
     private void Start()
     {
         currentHealth = initialHealth;
@@ -23,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            dieEvent.Invoke();
             Die();
         }
     }

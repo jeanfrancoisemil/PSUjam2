@@ -66,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines();
         _renderer.color = Color.black;
         _dead = true;
+        DontDestroyOnLoad(this.GetComponent<AudioSource>());
         SceneManager.LoadScene("GameOver");
     }
 }
