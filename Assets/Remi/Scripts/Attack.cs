@@ -28,7 +28,11 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	// Start is called before the first frame update
 	void Start()
     {
-	    if (player == null)
+	    if (PlayerInputs.Player != null)
+	    {
+		    player = PlayerInputs.Player;   
+	    }
+	    else
 	    {
 		    player = new Player();
 	    }
@@ -53,10 +57,13 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 	    
 	    if (switchArme)
 	    {
-		    if(!canSwitch) return;
-		    var index = weapons.IndexOf(currentWeapon);
-		    var newIndex = index == weapons.Count - 1 ? 0 : index + 1;
-		    SwitchWeapon(newIndex);
+		    if (canSwitch)
+		    {
+			    var index = weapons.IndexOf(currentWeapon);
+			    var newIndex = index == weapons.Count - 1 ? 0 : index + 1;
+			    SwitchWeapon(newIndex);	
+		    }
+		    switchArme = false;
 	    }
 
 
@@ -147,7 +154,10 @@ public class Attack : MonoBehaviour, Player.IArmeVerticaleActions, Player.IArmeH
 
 	public void OnSwitch(InputAction.CallbackContext context)
 	{
-		switchArme = context.performed;
+		if (context.started)
+		{
+			switchArme = true;
+		}
 	}
 
 }

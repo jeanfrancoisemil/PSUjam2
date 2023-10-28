@@ -26,11 +26,16 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 
 	private void Start()
 	{
-		if (player == null)
+		if (PlayerInputs.Player != null)
+		{ 
+			player = PlayerInputs.Player;   
+		}
+		else
 		{
 			player = new Player();
-			player.main.SetCallbacks(this);
 		}
+		player.main.SetCallbacks(this);
+	
 
 		player.main.Enable();
 
@@ -100,6 +105,9 @@ public class PlayerMovement : MonoBehaviour, Player.IMainActions {
 	
 
 	public void OnDash (InputAction.CallbackContext context){
-		dash=context.performed;
+		if (context.started)
+		{
+			dash = true;
+		}
 	}
 }

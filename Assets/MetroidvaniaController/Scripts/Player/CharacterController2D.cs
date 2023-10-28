@@ -184,7 +184,6 @@ public class CharacterController2D : MonoBehaviour
 				canDoubleJump = false;
 				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
-				animator.SetBool("IsDoubleJumping", true);
 			}
 
 			else if (m_IsWall && !m_Grounded)
@@ -196,7 +195,6 @@ public class CharacterController2D : MonoBehaviour
 					Flip();
 					StartCoroutine(WaitToCheck(0.1f));
 					canDoubleJump = true;
-					animator.SetBool("IsWallSliding", true);
 				}
 				isDashing = false;
 
@@ -216,14 +214,12 @@ public class CharacterController2D : MonoBehaviour
 				if (jump && isWallSliding)
 				{
 					animator.SetBool("IsJumping", true);
-					animator.SetBool("JumpUp", true); 
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
 					limitVelOnWallJump = true;
 					canDoubleJump = true;
 					isWallSliding = false;
-					animator.SetBool("IsWallSliding", false);
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					canMove = false;
@@ -231,7 +227,6 @@ public class CharacterController2D : MonoBehaviour
 				else if (dash && canDash)
 				{
 					isWallSliding = false;
-					animator.SetBool("IsWallSliding", false);
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					canDoubleJump = true;
@@ -241,7 +236,6 @@ public class CharacterController2D : MonoBehaviour
 			else if (isWallSliding && !m_IsWall && canCheck) 
 			{
 				isWallSliding = false;
-				animator.SetBool("IsWallSliding", false);
 				oldWallSlidding = false;
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 				canDoubleJump = true;
@@ -269,7 +263,6 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (!invincible)
 		{
-			animator.SetBool("Hit", true);
 			life -= damage;
 			Vector2 damageDir = Vector3.Normalize(transform.position - position) * 40f ;
 			m_Rigidbody2D.velocity = Vector2.zero;
@@ -288,7 +281,6 @@ public class CharacterController2D : MonoBehaviour
 
 	IEnumerator DashCooldown()
 	{
-		animator.SetBool("IsDashing", true);
 		isDashing = true;
 		canDash = false;
 		yield return new WaitForSeconds(0.1f);
@@ -328,20 +320,15 @@ public class CharacterController2D : MonoBehaviour
 		yield return new WaitForSeconds(0.1f);
 		canDoubleJump = true;
 		isWallSliding = false;
-		animator.SetBool("IsWallSliding", false);
 		oldWallSlidding = false;
 		m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 	}
 
 	IEnumerator WaitToDead()
 	{
-		animator.SetBool("IsDead", true);
 		canMove = false;
-		invincible = true;
-		GetComponent<Attack>().enabled = false;
 		yield return new WaitForSeconds(0.4f);
 		m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 		yield return new WaitForSeconds(1.1f);
-		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 	}
 }
