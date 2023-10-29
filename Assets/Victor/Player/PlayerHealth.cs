@@ -68,5 +68,6 @@ public class PlayerHealth : MonoBehaviour
         _dead = true;
         DontDestroyOnLoad(this.GetComponent<AudioSource>());
         SceneManager.LoadScene("GameOver");
+        
     }
 }

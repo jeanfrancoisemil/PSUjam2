@@ -18,18 +18,11 @@ public class AiguilleController : MonoBehaviour
         {
             Destroy(this);
         }
-        _animator = GetComponent<Animator>();
     }
 
-    public void LaunchWheel(string paramName)
+    public void LaunchWheel(float rotation)
     {
-        _animator.SetBool(paramName, true);
-        StartCoroutine(nameof(StopWheel));
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation);
     }
-
-    IEnumerator StopWheel()
-    {
-        yield return new WaitForSeconds(time);
-        _animator.SetTrigger("Launch");
-    }
+    
 }

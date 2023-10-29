@@ -32,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
     private float _teleportationWaitingTime;
     private bool _touchingPlayer;
     public float pushForce = 20f;
+    public int Damage = 1;
     public void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -96,7 +97,7 @@ public class EnemyMovement : MonoBehaviour
                 if (_touchingPlayer)
                 {
                     _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
-                    _followHealth.DoDamage(1);
+                    _followHealth.DoDamage(Damage);
                 }
                 break;
             case EnemyType.ShootingVertical:
@@ -133,7 +134,7 @@ public class EnemyMovement : MonoBehaviour
                 if (_touchingPlayer)
                 {
                     _follow.AddForce((_follow.transform.position-position).normalized * pushForce);
-                    _followHealth.DoDamage(1);
+                    _followHealth.DoDamage(Damage);
                 }
                 break;
         }

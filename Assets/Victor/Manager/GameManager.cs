@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public List<EnemyMovement> enemiesPrefabs;
     [HideInInspector]public int currentEnemySpawnedCount;
     private bool _deathPresence;
+    public UnityEvent NextWaveETZK;
     void Start()
     {
         if (Instance == null)
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
         currentPatterns.Add(GenerateNewPattern(waveNumber + numberOfWavePredicted));
         currentEnemySpawnedCount = 0;
         _deathPresence = DeathSpawner.Instance != null;
+        TEMP.Instance.transform.gameObject.SetActive(false);
+        AiguilleController.Instance.gameObject.SetActive(false);
         WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
     }
 
@@ -99,9 +103,10 @@ public class GameManager : MonoBehaviour
             }
             NextWave();
             
-            //StartCoroutine(nameof(Aiguille));
-            //AiguilleController.Instance.gameObject.SetActive(true);
-            WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
+            StartCoroutine(nameof(Aiguille));
+            AiguilleController.Instance.gameObject.SetActive(true);
+            TEMP.Instance.transform.gameObject.SetActive(true);
+            WeaponChoice.Instance.gameObject.SetActive(false);
             Time.timeScale = _savedTimeScale;
             
         }
@@ -113,17 +118,19 @@ public class GameManager : MonoBehaviour
         switch (patternOfWave.Enemy.kind)
         {
             case EnemyMovement.EnemyKind.Famine:
-                AiguilleController.Instance.LaunchWheel("Famine");
+                AiguilleController.Instance.LaunchWheel(0f);
                 break;
             case EnemyMovement.EnemyKind.Guerre:
-                AiguilleController.Instance.LaunchWheel("Guerre");
+                AiguilleController.Instance.LaunchWheel(-180f);
                 break;
             case EnemyMovement.EnemyKind.Conquete:
-                AiguilleController.Instance.LaunchWheel("Conquete");
+                AiguilleController.Instance.LaunchWheel(-90f);
                 break;
         }
-        yield return new WaitForSeconds(AiguilleController.Instance.time + 2f);
+        yield return new WaitForSeconds(AiguilleController.Instance.time);
         AiguilleController.Instance.gameObject.SetActive(false);
+        TEMP.Instance.transform.gameObject.SetActive(false);
+        WeaponChoice.Instance.transform.root.gameObject.SetActive(false);
     }
     
     IEnumerator ResetEndWave()
@@ -145,7 +152,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(nameof(SpawnDeath));
             DeathSpawner.Instance.SpawnDeath();
         }
-        
+        NextWaveETZK.Invoke();
         waveNumber++;
         currentPatterns.RemoveAt(0);
         patternOfWave = currentPatterns[0];

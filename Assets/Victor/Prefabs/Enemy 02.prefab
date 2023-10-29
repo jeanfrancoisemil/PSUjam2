@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22042d805e4af84b9c3165aeb40fcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kind: 0
   enemyType: 1
   teleportationThreshold: 0.8
   groundMask:
@@ -109,6 +110,7 @@ MonoBehaviour:
   speed: 3
   force: 0.4
   pushForce: 10
+  Damage: 10000
 --- !u!58 &6395071873139370855
 CircleCollider2D:
   m_ObjectHideFlags: 0
